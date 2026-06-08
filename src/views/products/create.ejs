@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+<div class="main">
+  <div class="topbar"><span class="page-title">➕ Tambah Produk</span></div>
+  <div class="content">
+    <div class="page-header">
+      <h1>Tambah Produk Baru</h1>
+      <a href="/products" class="btn btn-secondary">← Kembali</a>
+    </div>
+    <% if (error && error.length > 0) { %><div class="alert alert-danger"><%= error[0] %></div><% } %>
+    <div class="card" style="max-width:680px;">
+      <div class="card-body">
+        <form action="/products" method="POST">
+          <div class="form-group">
+            <label class="form-label">Nama Produk *</label>
+            <input type="text" name="name" class="form-control" placeholder="Nama produk" required/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Kategori</label>
+              <select name="category_id" class="form-control">
+                <option value="">-- Pilih Kategori --</option>
+                <% categories.forEach(function(c) { %>
+                  <option value="<%= c.id %>"><%= c.name %></option>
+                <% }); %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stok *</label>
+              <input type="number" name="stock" class="form-control" placeholder="Jumlah stok" min="0" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Harga (Rp) *</label>
+              <input type="number" name="price" class="form-control" placeholder="0" min="0" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Diskon (%)</label>
+              <input type="number" name="discount" class="form-control" placeholder="0" min="0" max="100" value="0"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Deskripsi</label>
+            <textarea name="description" class="form-control" placeholder="Deskripsi produk..."></textarea>
+          </div>
+          <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px;">
+            <a href="/products" class="btn btn-secondary">Batal</a>
+            <button type="submit" class="btn btn-primary">Simpan Produk</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,26 @@
+
+<script>
+  // Highlight active nav item based on URL
+  const path = window.location.pathname;
+  if (path.startsWith('/products')) {
+    const el = document.getElementById('nav-products');
+    if (el) el.classList.add('active');
+  } else if (path.startsWith('/categories')) {
+    const el = document.getElementById('nav-categories');
+    if (el) el.classList.add('active');
+  } else if (path.startsWith('/char-checker')) {
+    const el = document.getElementById('nav-char');
+    if (el) el.classList.add('active');
+  }
+
+  // Confirm delete forms
+  document.querySelectorAll('.delete-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      if (!confirm('Yakin ingin menghapus data ini?')) {
+        e.preventDefault();
+      }
+    });
+  });
+</script>
+</body>
+</html>

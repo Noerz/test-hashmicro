@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+<div class="main">
+  <div class="topbar"><span class="page-title">🔍 Detail Produk</span></div>
+  <div class="content">
+    <div class="page-header">
+      <h1><%= product.name %></h1>
+      <div style="display:flex;gap:10px;">
+        <a href="/products/<%= product.id %>/edit" class="btn btn-warning">Edit</a>
+        <a href="/products" class="btn btn-secondary">← Kembali</a>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div class="card">
+        <div class="card-header"><span class="card-title">Informasi Produk</span></div>
+        <div class="card-body">
+          <table style="width:100%;">
+            <tr><td style="padding:8px 0; color:var(--text3); font-size:0.83rem; width:140px;">ID</td><td class="mono" style="color:var(--accent);">#<%= product.id %></td></tr>
+            <tr><td style="padding:8px 0; color:var(--text3); font-size:0.83rem;">Nama</td><td style="font-weight:600;"><%= product.name %></td></tr>
+            <tr><td style="padding:8px 0; color:var(--text3); font-size:0.83rem;">Kategori</td><td><span class="badge badge-info"><%= product.category_name %></span></td></tr>
+            <tr><td style="padding:8px 0; color:var(--text3); font-size:0.83rem;">Deskripsi</td><td style="color:var(--text2);"><%= product.description || '-' %></td></tr>
+            <tr><td style="padding:8px 0; color:var(--text3); font-size:0.83rem;">Stok</td><td class="mono"><%= product.stock %> unit — <span class="badge badge-<%= product.stock_status.color %>"><%= product.stock_status.label %></span></td></tr>
+            <tr><td style="padding:8px 0; color:var(--text3); font-size:0.83rem;">Dibuat</td><td style="color:var(--text2); font-size:0.83rem;"><%= new Date(product.created_at).toLocaleString('id-ID') %></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">Kalkulasi Harga</span><span style="font-size:0.72rem; color:var(--text3);">PPN 11% sudah termasuk</span></div>
+        <div class="card-body">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; padding:12px 14px; background:var(--surface2); border-radius:8px;">
+              <span style="color:var(--text2); font-size:0.85rem;">Harga Dasar</span>
+              <span class="mono" style="font-weight:600;">Rp <%= product.price.toLocaleString('id-ID') %></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px 14px; background:var(--surface2); border-radius:8px;">
+              <span style="color:var(--warning); font-size:0.85rem;">Diskon (<%= product.discount %>%)</span>
+              <span class="mono" style="color:var(--warning);">- Rp <%= product.discount_amount.toLocaleString('id-ID') %></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px 14px; background:var(--surface2); border-radius:8px;">
+              <span style="color:var(--text2); font-size:0.85rem;">Setelah Diskon</span>
+              <span class="mono">Rp <%= product.price_after_discount.toLocaleString('id-ID') %></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:12px 14px; background:var(--surface2); border-radius:8px;">
+              <span style="color:var(--text2); font-size:0.85rem;">PPN (11%)</span>
+              <span class="mono" style="color:var(--text3);">+ Rp <%= product.tax_amount.toLocaleString('id-ID') %></span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:14px; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:8px;">
+              <span style="color:var(--success); font-weight:600; font-size:0.9rem;">Harga Final</span>
+              <span class="mono" style="color:var(--success); font-weight:700; font-size:1.1rem;">Rp <%= product.final_price.toLocaleString('id-ID') %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

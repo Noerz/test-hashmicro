@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Administrator",
+      "username": "admin",
+      "password": "$2b$10$2kAr1PPV5oMGWwu/iPFQEuSvbs3iN9L3AmvSdDqedqOudKB659EMa",
+      "role": "admin",
+      "created_at": "2026-06-06T08:39:04.973Z"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Pro X",
+      "category_id": 1,
+      "price": 15000000,
+      "stock": 10,
+      "discount": 10,
+      "description": "High performance laptop",
+      "created_at": "2026-06-06T08:39:04.975Z"
+    },
+    {
+      "id": 2,
+      "name": "Wireless Earbuds",
+      "category_id": 1,
+      "price": 500000,
+      "stock": 50,
+      "discount": 5,
+      "description": "Noise cancelling earbuds",
+      "created_at": "2026-06-06T08:39:04.975Z"
+    },
+    {
+      "id": 3,
+      "name": "Cotton T-Shirt",
+      "category_id": 2,
+      "price": 150000,
+      "stock": 100,
+      "discount": 0,
+      "description": "Comfortable cotton shirt",
+      "created_at": "2026-06-06T08:39:04.975Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics",
+      "description": "Electronic devices and accessories",
+      "created_at": "2026-06-06T08:39:04.974Z"
+    },
+    {
+      "id": 2,
+      "name": "Clothing",
+      "description": "Apparel and fashion",
+      "created_at": "2026-06-06T08:39:04.974Z"
+    },
+    {
+      "id": 3,
+      "name": "Food & Beverage",
+      "description": "Food and drink products",
+      "created_at": "2026-06-06T08:39:04.974Z"
+    }
+  ],
+  "char_checker_logs": []
+}

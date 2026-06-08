@@ -1,0 +1,59 @@
+<%- include('../partials/header') %>
+<div class="main">
+  <div class="topbar"><span class="page-title">📦 Manajemen Produk</span></div>
+  <div class="content">
+    <% if (success && success.length > 0) { %><div class="alert alert-success"><%= success[0] %></div><% } %>
+    <% if (error && error.length > 0) { %><div class="alert alert-danger"><%= error[0] %></div><% } %>
+
+    <div class="page-header">
+      <h1>Daftar Produk <span style="font-size:1rem; font-weight:400; color:var(--text3);">(<%= products.length %> item)</span></h1>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <form action="/products" method="GET" style="display:flex; gap:8px;">
+          <input type="text" name="search" value="<%= search %>" class="form-control" style="width:220px;" placeholder="Cari produk..."/>
+          <button type="submit" class="btn btn-secondary">Cari</button>
+          <% if (search) { %><a href="/products" class="btn btn-secondary">Reset</a><% } %>
+        </form>
+        <a href="/products/create" class="btn btn-primary">+ Tambah Produk</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Nama Produk</th><th>Kategori</th><th>Harga</th><th>Diskon</th><th>Harga Akhir</th><th>Stok</th><th>Status</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (products.length === 0) { %>
+              <tr><td colspan="9" style="text-align:center; padding:40px; color:var(--text3);">Tidak ada produk ditemukan</td></tr>
+            <% } %>
+            <% products.forEach(function(p, i) { %>
+              <tr>
+                <td class="mono" style="color:var(--text3);"><%= i + 1 %></td>
+                <td><a href="/products/<%= p.id %>" style="color:var(--text); font-weight:600; text-decoration:none;"><%= p.name %></a></td>
+                <td><span class="badge badge-info"><%= p.category_name %></span></td>
+                <td class="mono">Rp <%= p.price.toLocaleString('id-ID') %></td>
+                <td class="mono" style="color:var(--warning);"><%= p.discount %>%</td>
+                <td class="mono" style="color:var(--success); font-weight:600;">Rp <%= p.final_price.toLocaleString('id-ID') %></td>
+                <td class="mono"><%= p.stock %></td>
+                <td><span class="badge badge-<%= p.stock_status.color %>"><%= p.stock_status.label %></span></td>
+                <td>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                    <a href="/products/<%= p.id %>" class="btn btn-sm btn-secondary">Detail</a>
+                    <a href="/products/<%= p.id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <form action="/products/<%= p.id %>?_method=DELETE" method="POST" class="action-form delete-form">
+                      <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>
